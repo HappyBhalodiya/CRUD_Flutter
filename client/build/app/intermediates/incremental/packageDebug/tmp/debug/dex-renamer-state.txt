@@ -1,0 +1,4 @@
+#Thu Oct 17 18:01:29 IST 2019
+base.0=/var/www/html/Happy/Flutter/crud_flutter/client/build/app/intermediates/transforms/dexMerger/debug/0
+path.0=classes.dex
+renamed.0=classes.dex
