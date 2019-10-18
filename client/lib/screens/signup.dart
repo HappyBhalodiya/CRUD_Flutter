@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:crud_flutter/screens/login.dart';
+
 
 class SignupScreen extends StatefulWidget {
   @override
@@ -16,7 +16,7 @@ class SignupScreenState extends State<SignupScreen> {
 
   Future<http.Response> signup(
       String email, String password, String username) async {
-    if (_formKey.currentState.validate()) {
+     if(_emailController.text != '' && _passwordController.text != '' && _usernameController.text != ''){
       final response =
           await http.post('http://192.168.1.85:4000/addUser', body: {
         'email': _emailController.text,
@@ -70,9 +70,7 @@ class SignupScreenState extends State<SignupScreen> {
                       color: Theme.of(context).primaryColor,
                     ),
                   ),
-                  validator: (String v) {
-                    return v.trim().isNotEmpty ? null : "Can not be empty";
-                  },
+                 
                 ),
                 TextFormField(
                   autofocus: true,
@@ -84,9 +82,7 @@ class SignupScreenState extends State<SignupScreen> {
                       color: Theme.of(context).primaryColor,
                     ),
                   ),
-                  validator: (String v) {
-                    return v.trim().isNotEmpty ? null : "Can not be empty";
-                  },
+                  
                 ),
                 TextFormField(
                   controller: _passwordController,
@@ -98,9 +94,7 @@ class SignupScreenState extends State<SignupScreen> {
                     ),
                   ),
                   obscureText: true,
-                  validator: (String v) {
-                    return v.trim().isNotEmpty ? null : "Can not be empty";
-                  },
+                 
                 ),
                 RaisedButton(
                   onPressed: () {
@@ -108,6 +102,16 @@ class SignupScreenState extends State<SignupScreen> {
                         _usernameController.text);
                   },
                   child: Text('Signup'),
+                ),
+
+                 GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pushNamed("/login");
+                  },
+                  child: const Text(
+                    'Already have an account. Login',
+                    style: TextStyle(color: Colors.black, fontSize: 18.0),
+                  ),
                 ),
                
               ],

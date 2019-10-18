@@ -26,4 +26,19 @@ controller.login = function(req,res){
 
 }
 
+controller.getUser = function(req,res){
+	userModel.find({ }, function(err, user) {
+		
+		console.log(err);
+		if(err) 
+			return res.status(500).send();
+		if(!user)
+			return res.status(404).send();
+		console.log("get user", user);
+		res.send(user);	
+
+})
+
+}
+
 module.exports = controller;

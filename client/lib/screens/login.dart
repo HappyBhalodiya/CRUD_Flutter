@@ -13,7 +13,8 @@ class LoginScreenState extends State<LoginScreen> {
   TextEditingController _emailController = TextEditingController();
 
   Future<http.Response> login(String email, String password) async {
-    if (_formKey.currentState.validate()) {
+    if(_emailController.text != '' && _passwordController.text != ''){
+    // if (_formKey.currentState.validate()) {
       final response = await http.post('http://192.168.1.85:4000/login', body: {
         'email': _emailController.text,
         'password': _passwordController.text,
@@ -21,6 +22,7 @@ class LoginScreenState extends State<LoginScreen> {
       print(response.body);
       _emailController.text = '';
       _passwordController.text = '';
+        Navigator.of(context).pushNamed("/display");
       return response;
     }
   }
@@ -62,9 +64,7 @@ class LoginScreenState extends State<LoginScreen> {
                       color: Theme.of(context).primaryColor,
                     ),
                   ),
-                  validator: (String v) {
-                    return v.trim().isNotEmpty ? null : "Can not be empty";
-                  },
+                 
                 ),
                 TextFormField(
                   controller: _passwordController,
@@ -76,9 +76,7 @@ class LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   obscureText: true,
-                  validator: (String v) {
-                    return v.trim().isNotEmpty ? null : "Can not be empty";
-                  },
+                 
                 ),
                 RaisedButton(
                   onPressed: () {
