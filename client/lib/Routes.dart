@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:crud_flutter/login.dart';
+import 'package:crud_flutter/screens/login.dart';
+import 'package:crud_flutter/screens/signup.dart';
 
 
 class Routes {
 
   var routes = <String, WidgetBuilder>{
     "/login": (BuildContext context) => new LoginScreen(),
+    "/signup":(BuildContext context) => new SignupScreen()
    
   };
 
