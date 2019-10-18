@@ -18,6 +18,7 @@ console.log("connected");
 app.post('/addUser',controller.addUser);
 app.post('/login',controller.login);
 app.get('/getUser',controller.getUser);
+app.delete('/deleteData/:id',controller.deleteData);
 
 module.exports = app;
 

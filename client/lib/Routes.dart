@@ -15,7 +15,7 @@ class Routes {
   Routes() {
     runApp(new MaterialApp(
       title: "Flutter Flat App",
-      home: new LoginScreen(),
+      home: new DisplayScreen(),
      theme: ThemeData(         
         primaryColor: Colors.deepPurple,
       ), 

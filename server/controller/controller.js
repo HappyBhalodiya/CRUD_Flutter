@@ -9,11 +9,9 @@ controller.addUser = function(req,res){
 		res.status(200).send(savedUser);
 		console.log("body",savedUser);
 	})
-
 }
 controller.login = function(req,res){
 	userModel.findOne({ email: req.body.email,password:req.body.password}, function(err, user) {
-		
 		console.log(err);
 		if(err) 
 			return res.status(500).send();
@@ -21,24 +19,33 @@ controller.login = function(req,res){
 			return res.status(404).send();
 		console.log("login", user);
 		res.send(user);	
-
 })
-
 }
-
 controller.getUser = function(req,res){
 	userModel.find({ }, function(err, user) {
-		
 		console.log(err);
 		if(err) 
 			return res.status(500).send();
 		if(!user)
 			return res.status(404).send();
 		console.log("get user", user);
+		res.send(user);
+})
+}
+
+controller.deleteData = function(req,res){
+	const id = req.params.id;
+	userModel.findOneAndRemove({_id:id }, function(err, user) {
+		console.log(err);
+		if(err) 
+			return res.status(500).send();
+		if(!user)
+			return res.status(404).send();
+		console.log("delete user", user);
 		res.send(user);	
 
 })
-
 }
+
 
 module.exports = controller;

@@ -10,6 +10,7 @@ class DisplayScreen extends StatefulWidget {
 
 class DisplayScreenState extends State<DisplayScreen> {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  
 
   List userData;
 
@@ -28,6 +29,17 @@ class DisplayScreenState extends State<DisplayScreen> {
     debugPrint(userData.toString());
   }
 
+
+   Future<http.Response> deleteData(
+      String _id) async {
+   
+      final response =
+          await http.delete('http://192.168.1.85:4000/deleteData/$_id',);
+      print(response.body);
+      return response;
+    
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,6 +54,19 @@ class DisplayScreenState extends State<DisplayScreen> {
                   padding: const EdgeInsets.all(10.0),
                   child: Row(
                     children: <Widget>[
+                      GestureDetector(
+                        onTap: () {
+                          deleteData('${userData[index]["_id"]}');
+                        },
+                        child: Icon(
+                          Icons.delete,
+                          color: Theme.of(context).primaryColor,
+                        ),
+                      ),
+                      Icon(
+                        Icons.create,
+                        color: Theme.of(context).primaryColor,
+                      ),
                       Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Text(
