@@ -19,6 +19,8 @@ app.post('/addUser',controller.addUser);
 app.post('/login',controller.login);
 app.get('/getUser',controller.getUser);
 app.delete('/deleteData/:id',controller.deleteData);
+app.put('/updateData/:id',controller.updateData);
+app.get('/getUserById/:id',controller.getUserById);
 
 module.exports = app;
 

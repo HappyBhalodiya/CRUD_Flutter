@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
+import 'package:crud_flutter/screens/update.dart';
 
 class DisplayScreen extends StatefulWidget {
   @override
@@ -10,7 +11,6 @@ class DisplayScreen extends StatefulWidget {
 
 class DisplayScreenState extends State<DisplayScreen> {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  
 
   List userData;
 
@@ -22,22 +22,18 @@ class DisplayScreenState extends State<DisplayScreen> {
 
   Future fetchPost() async {
     http.Response response = await http.get('http://192.168.1.85:4000/getUser');
-    print(response.body);
+
     setState(() {
       userData = json.decode(response.body);
     });
-    debugPrint(userData.toString());
   }
 
+  Future<http.Response> deleteData(String _id) async {
+    final response = await http.delete(
+      'http://192.168.1.85:4000/deleteData/$_id',
+    );
 
-   Future<http.Response> deleteData(
-      String _id) async {
-   
-      final response =
-          await http.delete('http://192.168.1.85:4000/deleteData/$_id',);
-      print(response.body);
-      return response;
-    
+    return response;
   }
 
   @override
@@ -63,9 +59,19 @@ class DisplayScreenState extends State<DisplayScreen> {
                           color: Theme.of(context).primaryColor,
                         ),
                       ),
-                      Icon(
-                        Icons.create,
-                        color: Theme.of(context).primaryColor,
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => UpdateScreen(
+                                    id: '${userData[index]["_id"]}'),
+                              ));
+                        },
+                        child: Icon(
+                          Icons.create,
+                          color: Theme.of(context).primaryColor,
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(10.0),

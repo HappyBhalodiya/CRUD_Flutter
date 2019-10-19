@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-
 class SignupScreen extends StatefulWidget {
   @override
   SignupScreenState createState() => SignupScreenState();
@@ -16,7 +15,9 @@ class SignupScreenState extends State<SignupScreen> {
 
   Future<http.Response> signup(
       String email, String password, String username) async {
-     if(_emailController.text != '' && _passwordController.text != '' && _usernameController.text != ''){
+    if (_emailController.text != '' &&
+        _passwordController.text != '' &&
+        _usernameController.text != '') {
       final response =
           await http.post('http://192.168.1.85:4000/addUser', body: {
         'email': _emailController.text,
@@ -32,7 +33,6 @@ class SignupScreenState extends State<SignupScreen> {
       return response;
     }
   }
-  
 
   @override
   void dispose() {
@@ -71,7 +71,6 @@ class SignupScreenState extends State<SignupScreen> {
                       color: Theme.of(context).primaryColor,
                     ),
                   ),
-                 
                 ),
                 TextFormField(
                   autofocus: true,
@@ -83,7 +82,6 @@ class SignupScreenState extends State<SignupScreen> {
                       color: Theme.of(context).primaryColor,
                     ),
                   ),
-                  
                 ),
                 TextFormField(
                   controller: _passwordController,
@@ -95,7 +93,6 @@ class SignupScreenState extends State<SignupScreen> {
                     ),
                   ),
                   obscureText: true,
-                 
                 ),
                 RaisedButton(
                   onPressed: () {
@@ -104,8 +101,7 @@ class SignupScreenState extends State<SignupScreen> {
                   },
                   child: Text('Signup'),
                 ),
-
-                 GestureDetector(
+                GestureDetector(
                   onTap: () {
                     Navigator.of(context).pushNamed("/login");
                   },
@@ -114,7 +110,6 @@ class SignupScreenState extends State<SignupScreen> {
                     style: TextStyle(color: Colors.black, fontSize: 18.0),
                   ),
                 ),
-               
               ],
             ),
           ),

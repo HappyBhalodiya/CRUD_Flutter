@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:crud_flutter/screens/login.dart';
 import 'package:crud_flutter/screens/signup.dart';
 import 'package:crud_flutter/screens/display.dart';
+import 'package:crud_flutter/screens/update.dart';
 
 class Routes {
 
@@ -9,6 +10,7 @@ class Routes {
     "/login": (BuildContext context) => new LoginScreen(),
     "/signup":(BuildContext context) => new SignupScreen(),
     "/display":(BuildContext context) => new DisplayScreen(),
+    "/update":(BuildContext context) => new UpdateScreen(),
    
   };
 
